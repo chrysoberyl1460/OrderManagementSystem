@@ -90,6 +90,10 @@ public class OrderManager {
 				
 				System.out.print("Edit Complete.");
 			}
+			else {
+				System.out.println("Order history is missing or the information is invalid.");
+				return ;
+			}
 			break;
 		}
 	}
