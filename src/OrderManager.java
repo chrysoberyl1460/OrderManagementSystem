@@ -88,7 +88,7 @@ public class OrderManager {
 					order.product = input.next();
 				}
 				
-				System.out.print("Edit Complete.");
+				System.out.println("Edit Complete.");
 			}
 			else {
 				System.out.println("Order history is missing or the information is invalid.");
