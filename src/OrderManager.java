@@ -1,5 +1,8 @@
 import java.util.*;
 
+import order.CrossBorderOrder;
+import order.Order;
+
 public class OrderManager {
 	ArrayList<Order> orders = new ArrayList<Order>();
 	Scanner input; 
@@ -9,22 +12,29 @@ public class OrderManager {
 	
 	
 	public void addOrder() {
-		Order order = new Order();
 		
-		System.out.print("Name : ");
-		order.name = input.next();
-		
-		System.out.print("Phone Number : ");
-		order.phone = input.next();
-		
-		System.out.print("Address : ");	
-		order.address = input.next();
-		
-		System.out.print("Product Order Name : ");
-		order.product = input.next();
-		
-		orders.add(order);
-		
+		int kind = 0;
+		Order order;
+		while (kind != 1 && kind != 2) {
+			System.out.println("1. General(domestic)");
+			System.out.println("2. Cross-Border");
+			System.out.println("Select num for Order Kind : ");
+			kind = input.nextInt();
+			if(kind == 1) {
+				order = new Order();
+				order.getUserInput(input);
+				orders.add(order);
+				break;
+			}
+			else if(kind == 2) {
+				order = new CrossBorderOrder();
+				order.getUserInput(input);
+				orders.add(order);
+				break;
+			}
+			else
+				System.out.print("Select num for Order Kind between 1 and 2 :");
+		}	
 	}
 	
 	public void deleteOrder() {
@@ -37,7 +47,7 @@ public class OrderManager {
 		int index = -1;
 		
 		for(int i = 0 ; i< orders.size(); i++) {
-			if(orders.get(i).name.equals(checkName) && orders.get(i).phone.equals(checkPhone)) {
+			if(orders.get(i).getName().equals(checkName) && orders.get(i).getPhone().equals(checkPhone)) {
 				index = i;
 				break;
 			}
@@ -61,7 +71,7 @@ public class OrderManager {
 		
 		for(int i = 0 ; i< orders.size(); i++) {
 			Order order = orders.get(i);
-			if(order.name.equals(checkName) && order.phone.equals(checkPhone)) {
+			if(order.getName().equals(checkName) && order.getPhone().equals(checkPhone)) {
 				
 				System.out.println("Choose What to Change.");
 				System.out.println("=================================");
@@ -74,18 +84,22 @@ public class OrderManager {
 				
 				if(numEdit == 1) {
 					System.out.print("Address : ");
-					order.address = input.next();;
+					String address = input.next();
+					order.setAddress(address);
 				}
 				else if(numEdit == 2) {
 					System.out.print("Product Order Name : ");
-					order.product = input.next();
+					String product = input.next();
+					order.setProduct(product);
 				}
 				else {
 					System.out.print("Address : ");
-					order.address = input.next();
+					String address = input.next();
+					order.setAddress(address);
 					
 					System.out.print("Product Order Name : ");
-					order.product = input.next();
+					String product = input.next();
+					order.setProduct(product);
 				}
 				
 				System.out.println("Edit Complete.");
