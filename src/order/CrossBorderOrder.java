@@ -15,12 +15,11 @@ public class CrossBorderOrder extends Order {
 		
 		System.out.print("Address : ");	
 		String address = input.next();
-		address = "Korea Republic of " + address;
+		address = "Korea, Republic of " + address;
 		this.setAddress(address);
 		
 		System.out.print("Product Order Name : ");
 		String product = input.next();
 		this.setProduct(product);
 	}
-
 }
