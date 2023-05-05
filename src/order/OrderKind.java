@@ -1,6 +1,6 @@
 package order;
 
 public enum OrderKind {
-	General,
+	Domestic,
 	CrossBorder
 }
