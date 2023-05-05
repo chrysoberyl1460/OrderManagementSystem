@@ -3,7 +3,7 @@ package order;
 import java.util.Scanner;
 
 public class Order {
-	protected OrderKind kind = OrderKind.General;
+	protected OrderKind kind = OrderKind.Domestic;
 	protected String name = "Empty";
 	protected String phone = "Empty";
 	protected String address = "Empty";
@@ -11,8 +11,20 @@ public class Order {
 	
 	public Order() {
 	}
-
+	
+	public Order(OrderKind kind) {
+		this.kind = kind;
+	}
+	
 	public Order(String name, String phone, String address, String product) {
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+		this.product = product;
+	}
+
+	public Order(OrderKind kind, String name, String phone, String address, String product) {
+		this.kind= kind;
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
@@ -58,9 +70,21 @@ public class Order {
 	public void setProduct(String product) {
 		this.product = product;
 	}
-	
+	 
 	public void viewOrders() {
-		System.out.println("Name : " + name + ", Phone Number : " + phone + ", Address : " + address + ", Product Order Name : " + product);
+		String skind = "none";
+		switch(this.kind) {
+		case Domestic:
+			skind = "Domestic";
+			System.out.println("kind : " + skind + " Name : " + name + ", Phone Number : " + phone + ", Address : " + address + ", Product Order Name : " + product);
+			break;
+		case CrossBorder:
+			skind = "CrossBorder";
+			System.out.println("kind : " + skind + " Name : " + name + ", Phone Number : +82 10" + phone.substring(3) + ", Address : " + address + ", Product Order Name : " + product);
+			break;
+		default:
+			System.out.println("kind : " + skind + " Name : " + name + ", Phone Number : " + phone + ", Address : " + address + ", Product Order Name : " + product);
+		}
 	}
 	
 	public void getUserInput(Scanner input) {
