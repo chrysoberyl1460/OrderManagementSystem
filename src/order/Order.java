@@ -71,7 +71,7 @@ public class Order {
 		this.product = product;
 	}
 	 
-	public void viewOrders() {
+	public void printInfo() {
 		String skind = "none";
 		switch(this.kind) {
 		case Domestic:
