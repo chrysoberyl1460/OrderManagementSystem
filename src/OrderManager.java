@@ -2,6 +2,7 @@ import java.util.*;
 
 import order.CrossBorderOrder;
 import order.Order;
+import order.OrderKind;
 
 public class OrderManager {
 	ArrayList<Order> orders = new ArrayList<Order>();
@@ -16,18 +17,18 @@ public class OrderManager {
 		int kind = 0;
 		Order order;
 		while (kind != 1 && kind != 2) {
-			System.out.println("1. General(domestic)");
+			System.out.println("1. Domestic");
 			System.out.println("2. Cross-Border");
 			System.out.println("Select num for Order Kind : ");
 			kind = input.nextInt();
 			if(kind == 1) {
-				order = new Order();
+				order = new Order(OrderKind.Domestic);
 				order.getUserInput(input);
 				orders.add(order);
 				break;
 			}
 			else if(kind == 2) {
-				order = new CrossBorderOrder();
+				order = new CrossBorderOrder(OrderKind.CrossBorder);
 				order.getUserInput(input);
 				orders.add(order);
 				break;
@@ -114,8 +115,7 @@ public class OrderManager {
 	
 	public void viewOrders() {
 		for(int i = 0; i < orders.size(); i++) {
-			orders.get(i).viewOrders();
+			orders.get(i).printInfo();
 		}
-		
 	}
 }
