@@ -1,11 +1,13 @@
 import java.util.*;
 
 import order.CrossBorderOrder;
+import order.DomesticOrder;
 import order.Order;
+import order.OrderInput;
 import order.OrderKind;
 
 public class OrderManager {
-	ArrayList<Order> orders = new ArrayList<Order>();
+	ArrayList<OrderInput> orders = new ArrayList<OrderInput>();
 	Scanner input; 
 	OrderManager(Scanner input){
 		this.input = input;
@@ -15,22 +17,22 @@ public class OrderManager {
 	public void addOrder() {
 		
 		int kind = 0;
-		Order order;
+		OrderInput orderInput;
 		while (kind != 1 && kind != 2) {
 			System.out.println("1. Domestic");
 			System.out.println("2. Cross-Border");
 			System.out.println("Select num for Order Kind : ");
 			kind = input.nextInt();
 			if(kind == 1) {
-				order = new Order(OrderKind.Domestic);
-				order.getUserInput(input);
-				orders.add(order);
+				orderInput = new DomesticOrder(OrderKind.Domestic);
+				orderInput.getUserInput(input);
+				orders.add(orderInput);
 				break;
 			}
 			else if(kind == 2) {
-				order = new CrossBorderOrder(OrderKind.CrossBorder);
-				order.getUserInput(input);
-				orders.add(order);
+				orderInput = new CrossBorderOrder(OrderKind.CrossBorder);
+				orderInput.getUserInput(input);
+				orders.add(orderInput);
 				break;
 			}
 			else
@@ -71,8 +73,8 @@ public class OrderManager {
 		String checkPhone = input.next();
 		
 		for(int i = 0 ; i< orders.size(); i++) {
-			Order order = orders.get(i);
-			if(order.getName().equals(checkName) && order.getPhone().equals(checkPhone)) {
+			OrderInput orderInput = orders.get(i);
+			if(orderInput.getName().equals(checkName) && orderInput.getPhone().equals(checkPhone)) {
 				
 				System.out.println("Choose What to Change.");
 				System.out.println("=================================");
@@ -86,21 +88,21 @@ public class OrderManager {
 				if(numEdit == 1) {
 					System.out.print("Address : ");
 					String address = input.next();
-					order.setAddress(address);
+					orderInput.setAddress(address);
 				}
 				else if(numEdit == 2) {
 					System.out.print("Product Order Name : ");
 					String product = input.next();
-					order.setProduct(product);
+					orderInput.setProduct(product);
 				}
 				else {
 					System.out.print("Address : ");
 					String address = input.next();
-					order.setAddress(address);
+					orderInput.setAddress(address);
 					
 					System.out.print("Product Order Name : ");
 					String product = input.next();
-					order.setProduct(product);
+					orderInput.setProduct(product);
 				}
 				
 				System.out.println("Edit Complete.");

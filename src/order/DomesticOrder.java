@@ -2,11 +2,12 @@ package order;
 
 import java.util.Scanner;
 
-public class CrossBorderOrder extends Order implements OrderInput{
+public class DomesticOrder extends Order implements OrderInput{
 	
-	public CrossBorderOrder(OrderKind kind) {
+	public DomesticOrder(OrderKind kind) {
 		super(kind);
 	}
+	
 	public void getUserInput(Scanner input) {
 
 		System.out.print("Name : ");
@@ -19,7 +20,6 @@ public class CrossBorderOrder extends Order implements OrderInput{
 		
 		System.out.print("Address : ");	
 		String address = input.next();
-		address = "Korea, Republic of " + address;
 		this.setAddress(address);
 		
 		System.out.print("Product Order Name : ");
