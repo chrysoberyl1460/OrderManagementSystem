@@ -2,7 +2,9 @@ package order;
 
 import java.util.Scanner;
 
-public abstract class Order {
+import exception.PhoneFormatException;
+
+public abstract class Order implements OrderInput {
 	protected OrderKind kind = OrderKind.Domestic;
 	protected String name = "Empty";
 	protected String phone = "Empty";
@@ -51,7 +53,10 @@ public abstract class Order {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(String phone) throws PhoneFormatException{
+		if(!phone.contains("-") && !phone.equals("")) {
+			throw new PhoneFormatException();
+		}
 		this.phone = phone;
 	}
 
@@ -72,4 +77,52 @@ public abstract class Order {
 	}
 	 
 	public abstract void printInfo();
+	
+	public void setOrderName(Scanner input) {
+		System.out.print("Name : ");
+		String name = input.next();
+		this.setName(name);
+	}
+	
+	public void setOrderPhone(Scanner input) {
+		String phone = "";
+		while (!phone.contains("-")) {
+			System.out.print("Phone Number : ");
+			phone = input.next();
+			try {
+				this.setPhone(phone);
+			} catch(PhoneFormatException e) {
+				System.out.println("Incorrect Phone Format put the phone format that contains '-' ");
+			}
+		}
+	}
+	
+	public void setOrderAddress(Scanner input) {
+		System.out.print("Address : ");
+		String address = input.next();
+		this.setAddress(address);
+	}
+	
+	public void setOrderProduct(Scanner input) {
+		System.out.print("Product Order Name : ");
+		String product = input.next();
+		this.setProduct(product);
+	}
+	
+	public String getKindString() {
+		String skind = "none";
+		switch(this.kind) {
+		case Domestic:
+			skind = "Domestic";
+			System.out.println("kind : " + skind + " Name : " + name + ", Phone Number : " + phone + ", Address : " + address + ", Product Order Name : " + product);
+			break;
+		case CrossBorder:
+			skind = "CrossBorder";
+			System.out.println("kind : " + skind + " Name : " + name + ", Phone Number : +82 10" + phone.substring(3) + ", Address : Korea, Republic of " + address + ", Product Order Name : " + product);
+			break;
+		default:
+			System.out.println("kind : " + skind + " Name : " + name + ", Phone Number : " + phone + ", Address : " + address + ", Product Order Name : " + product);
+		}
+		return skind;
+	}
 }
