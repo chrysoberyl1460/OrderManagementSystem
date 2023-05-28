@@ -1,10 +1,15 @@
 package order;
 
+import java.io.Serializable;
 import java.util.Scanner;
-
 import exception.PhoneFormatException;
 
-public abstract class Order implements OrderInput {
+public abstract class Order implements OrderInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5094651113903734710L;
+	
 	protected OrderKind kind = OrderKind.Domestic;
 	protected String name = "Empty";
 	protected String phone = "Empty";
