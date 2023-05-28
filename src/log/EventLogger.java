@@ -1,11 +1,7 @@
 package log;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.FileHandler;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.io.*;
+import java.util.logging.*;
 
 public class EventLogger {
 	FileHandler filehandler;
