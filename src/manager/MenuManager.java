@@ -1,9 +1,11 @@
+package manager;
 import java.io.*;
 import java.util.*;
 
+import gui.WindowFrame;
 import log.EventLogger;
 
-public class MenuManager {
+public class MenuManager { 
 	static EventLogger logger = new EventLogger("Log.txt");
 	
 	public static void main(String[] args) {
@@ -14,6 +16,8 @@ public class MenuManager {
 		}
 		else
 			orderManager.setInput(input);
+		
+		WindowFrame frame = new WindowFrame(orderManager);
 		selectMenu(input, orderManager);
 		putObject(orderManager, "ordermanager.ser");
 	}

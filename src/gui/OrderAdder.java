@@ -2,8 +2,13 @@ package gui;
 
 import javax.swing.*;
 
-public class OrderAdder extends JFrame{
-	public OrderAdder() {
+public class OrderAdder extends JPanel{
+	
+	WindowFrame frame;
+	
+	public OrderAdder(WindowFrame frame) {
+		this.frame = frame;
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -35,9 +40,8 @@ public class OrderAdder extends JFrame{
 		panel.add(new JButton("cancel"));
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6 ,6, 6);
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setContentPane(panel);
+		
+		this.add(panel);
 		this.setVisible(true);
 	}
 }

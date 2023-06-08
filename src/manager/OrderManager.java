@@ -1,7 +1,9 @@
+package manager;
 import java.io.Serializable;
 import java.util.*;
 import order.CrossBorderOrder;
 import order.DomesticOrder;
+import order.Order;
 import order.OrderInput;
 import order.OrderKind;
 
@@ -120,6 +122,14 @@ public class OrderManager implements Serializable {
         for (int i = 0; i < orders.size(); i++) {
             orders.get(i).printInfo();
         }
+    }
+    
+    public int size() {
+    	return orders.size();
+    }
+    
+    public OrderInput get(int index) {
+    	return (Order) orders.get(index);
     }
 
     public void showEditMenu() {
