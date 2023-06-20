@@ -16,6 +16,17 @@ public class OrderManager implements Serializable {
         this.input = input;
     }
 
+    public void addOrder(String name, String phone, String address, String product) {
+    	OrderInput orderInput = new DomesticOrder(OrderKind.Domestic);
+        orderInput.getUserInput(input);
+        orders.add(orderInput);
+    }
+    
+    public void addOrder(OrderInput orderInput) {
+    	orders.add(orderInput);
+    }
+    
+    
     public void addOrder() {
         int kind = 0;
         OrderInput orderInput;

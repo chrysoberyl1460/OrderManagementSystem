@@ -1,4 +1,4 @@
-package listeners;
+package event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,19 +8,19 @@ import gui.OrderAdder;
 import gui.OrderViewer;
 import gui.WindowFrame;
 
-public class ButtonAddListener implements ActionListener {
+public class OrderAdderCancelListener implements ActionListener {
 	
 	WindowFrame frame;
 	
-	public ButtonAddListener(WindowFrame frame) {
+	public OrderAdderCancelListener(WindowFrame frame) {
 		this.frame = frame;
 	}
-
+ 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton b = (JButton) e.getSource();
-		OrderAdder adder = frame.getOrderadder();
-		frame.setupPanel(adder);
-
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(frame.getMenuselection());
+		frame.revalidate();
+		frame.repaint();
 	}
 }

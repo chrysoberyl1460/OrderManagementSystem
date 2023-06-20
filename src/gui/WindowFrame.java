@@ -1,7 +1,6 @@
 package gui;
 
 import javax.swing.*;
-
 import manager.OrderManager;
 
 public class WindowFrame extends JFrame{
@@ -19,7 +18,7 @@ public class WindowFrame extends JFrame{
 		
 		this.orderManager = orderManager;
 		menuselection = new MenuSelection(this);
-		orderadder = new OrderAdder(this);
+		orderadder = new OrderAdder(this, this.orderManager);
 		orderviewer = new OrderViewer(this, this.orderManager);
 		
 		this.add(menuselection);

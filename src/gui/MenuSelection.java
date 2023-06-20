@@ -1,11 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
-
 import javax.swing.*;
 
-import listeners.ButtonAddListener;
-import listeners.ButtonViewListener;
+import event.ButtonAdderListener;
+import event.ButtonViewerListener;
 
 public class MenuSelection extends JPanel{
 	
@@ -26,8 +25,8 @@ public class MenuSelection extends JPanel{
 		JButton button4 = new JButton("Delete Order");
 		JButton button5 = new JButton("Exit Program");
 		
-		button1.addActionListener(new ButtonAddListener(frame));
-		button2.addActionListener(new ButtonViewListener(frame));
+		button1.addActionListener(new ButtonAdderListener(frame));
+		button2.addActionListener(new ButtonViewerListener(frame));
 		
 		panel1.add(label);
 		panel2.add(button1);

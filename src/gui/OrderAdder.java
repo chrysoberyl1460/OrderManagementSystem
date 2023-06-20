@@ -2,12 +2,18 @@ package gui;
 
 import javax.swing.*;
 
+import event.OrderAdderCancelListener;
+import event.OrderAdderListener;
+import manager.OrderManager;
+
 public class OrderAdder extends JPanel{
 	
 	WindowFrame frame;
+	OrderManager orderManager;
 	
-	public OrderAdder(WindowFrame frame) {
+	public OrderAdder(WindowFrame frame, OrderManager orderManager) {
 		this.frame = frame;
+		this.orderManager = orderManager;
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
@@ -33,11 +39,17 @@ public class OrderAdder extends JPanel{
 		JLabel labelProduct = new JLabel("Product : ", JLabel.TRAILING);
 		JTextField fieldProduct = new JTextField(10);
 		labelProduct.setLabelFor(fieldProduct);
+		
+		JButton saveButton = new JButton("save");
+		saveButton.addActionListener(new OrderAdderListener(fieldName, fieldPhone, fieldAddress, fieldProduct, orderManager));
+		JButton cancelButton = new JButton("cancel");
+		cancelButton.addActionListener(new OrderAdderCancelListener(frame));
+		
 		panel.add(labelProduct);
 		panel.add(fieldProduct);
 		
-		panel.add(new JButton("save"));
-		panel.add(new JButton("cancel"));
+		panel.add(saveButton);
+		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6 ,6, 6);
 		

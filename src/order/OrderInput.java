@@ -13,7 +13,11 @@ public interface OrderInput {
 	
 	public void setPhone(String phone) throws PhoneFormatException;
 	
+	public String getAddress();
+	
 	public void setAddress(String address);
+	
+	public String getProduct();
 	
 	public void setProduct(String product);
 	
